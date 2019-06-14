@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+</head>
+<body>
+<select id="foo" size="10">
+  <option value="3">3</option>
+  <option value="1">1</option>
+  <option value="0">0</option>
+  <option value="2">2</option>
+</select>
+<script>
+  var sel = document.getElementById('foo');
+  var ary = (function(nl) {
+    var a = [];
+    for (var i = 0, len = nl.length; i < len; i++)
+      a.push(nl.item(i));
+    return a;
+  })(sel.options);
+  ary.sort(function(a,b){
+    return a.value - b.value;
+  });
+  for (var i = 0, len = ary.length; i < len; i++)
+    sel.remove(ary[i].index);
+  for (var i = 0, len = ary.length; i < len; i++)
+    sel.add(ary[i], null);
+</script>
+</body>
+</html>
